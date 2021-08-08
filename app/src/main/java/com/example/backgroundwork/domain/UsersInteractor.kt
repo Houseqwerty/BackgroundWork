@@ -1,21 +1,40 @@
 package com.example.backgroundwork.domain
 
-import com.example.backgroundwork.data.repository.UserRepository
+import com.example.backgroundwork.models.converter.Converter
+import com.example.backgroundwork.models.data.UserStore
 import com.example.backgroundwork.models.domain.UserDomain
-import java.io.IOException
 
-
+/**
+ * Логика пользователей
+ *
+ * @param usersRepository репозиторий с пользователями
+ * @param converter конвертер моделей из дата слоя в домейн
+ */
 class UsersInteractor(
-    private val userRepository: UserRepository,
+    private val usersRepository: UsersRepository,
+    private val converter: Converter<UserStore, UserDomain>
 ) {
 
-    @Throws(IOException::class, IllegalStateException::class)
-    fun getUsers(): List<UserDomain> =
-        userRepository.getUsers().filter { it.login.contains('d') }
-            .map { UserDomain(it.login, it.avatarUrl) }
+    /**
+     * Получить пользователей, у которых в логине содержится строка [loginPart]
+     *
+     * @param loginPart часть логина
+     */
+    fun getUsers(loginPart: String): List<UserDomain> {
+        return usersRepository.getUsers()
+            .filter { user -> user.login.contains(loginPart, true) }
+            .map(converter::convert)
+    }
 
-    @Throws(IOException::class, IllegalStateException::class)
-    fun getUser(userId: String): UserDomain =
-        userRepository.getUser(userId).let { UserDomain(it.login, it.avatarUrl) }
+    /**
+     * Получить пользователей с сервера, у которых в логине содержится строка [loginPart]
+     *
+     * @param loginPart часть логина
+     */
+    fun remoteUsers(loginPart: String): List<UserDomain> {
+        return usersRepository.getRemoteUsers()
+            .filter { user -> user.login.contains(loginPart, true) }
+            .map(converter::convert)
+    }
 
 }

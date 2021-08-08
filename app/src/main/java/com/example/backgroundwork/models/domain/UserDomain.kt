@@ -1,12 +1,14 @@
 package com.example.backgroundwork.models.domain
 
 /**
- * Модель данных для логического слоя
+ * Модель данных для domain слоя
  *
- * @param login логин
- * @param avatarUrl  аватар пользователя
+ * @param id ид пользователя
+ * @param login логин пользователля
+ * @param avatarUrl аватар пользователя
  */
 data class UserDomain(
+    val id: Int,
     val login: String,
     val avatarUrl: String
 )
