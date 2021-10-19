@@ -1,6 +1,6 @@
 package com.example.backgroundwork.domain
 
-import com.example.backgroundwork.models.data.UserStore
+import com.example.backgroundwork.models.domain.UserDomain
 
 /**
  * Репозиторий для работы с данными
@@ -12,13 +12,13 @@ interface UsersRepository {
      *
      * @return Список пользователй
      */
-    fun getUsers(): List<UserStore>
+    fun getUsers(): List<UserDomain>
 
     /**
      * Получить пользователей с сервера
      *
      * @return Список пользователй
      */
-    fun getRemoteUsers(): List<UserStore>
+    fun getRemoteUsers(): List<UserDomain>
 
 }

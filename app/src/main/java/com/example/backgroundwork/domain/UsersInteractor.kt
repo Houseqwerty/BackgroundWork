@@ -1,18 +1,14 @@
 package com.example.backgroundwork.domain
 
-import com.example.backgroundwork.models.converter.Converter
-import com.example.backgroundwork.models.data.UserStore
 import com.example.backgroundwork.models.domain.UserDomain
 
 /**
  * Логика пользователей
  *
  * @param usersRepository репозиторий с пользователями
- * @param converter конвертер моделей из дата слоя в домейн
  */
 class UsersInteractor(
     private val usersRepository: UsersRepository,
-    private val converter: Converter<UserStore, UserDomain>
 ) {
 
     /**
@@ -23,7 +19,6 @@ class UsersInteractor(
     fun getUsers(loginPart: String): List<UserDomain> {
         return usersRepository.getUsers()
             .filter { user -> user.login.contains(loginPart, true) }
-            .map(converter::convert)
     }
 
     /**
@@ -34,7 +29,6 @@ class UsersInteractor(
     fun remoteUsers(loginPart: String): List<UserDomain> {
         return usersRepository.getRemoteUsers()
             .filter { user -> user.login.contains(loginPart, true) }
-            .map(converter::convert)
     }
 
 }

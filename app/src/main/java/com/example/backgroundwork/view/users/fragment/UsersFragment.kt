@@ -57,11 +57,11 @@ class UsersFragment : Fragment(R.layout.fragment_first) {
                 val converterData: Converter<UserResponse, UserStore> =
                     UserResponseToUserStoreConverter()
                 val userApi: UsersApi = OkHttpUsersApiImpl(okClient, jsonSerializer)
-                val usersRepository: UsersRepository =
-                    UsersRepositoryImpl(userApi, userStore, converterData)
                 val converterDomain: Converter<UserStore, UserDomain> =
                     UserStoreToUserDomainConverter()
-                val usersInteractor = UsersInteractor(usersRepository, converterDomain)
+                val usersRepository: UsersRepository =
+                    UsersRepositoryImpl(userApi, userStore, converterData, converterDomain)
+                val usersInteractor = UsersInteractor(usersRepository)
                 val schedulersProvider: SchedulersProvider = SchedulersProviderImpl()
                 val converterModel: Converter<UserDomain, UserModel> =
                     UserDomainToUserModelConverter()
