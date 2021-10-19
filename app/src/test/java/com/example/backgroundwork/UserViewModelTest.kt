@@ -2,7 +2,6 @@ package com.example.backgroundwork
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.example.backgroundwork.domain.UsersInteractor
 import com.example.backgroundwork.models.domain.UserDomain
 import com.example.backgroundwork.models.presentation.UserModel
 import com.example.backgroundwork.utils.SchedulersProviderImplStub

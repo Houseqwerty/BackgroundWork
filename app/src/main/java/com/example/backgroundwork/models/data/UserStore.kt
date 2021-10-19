@@ -3,10 +3,8 @@ package com.example.backgroundwork.models.data
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-
 /**
- *
- * Модель для работы с сервером
+ * Модель для сохрания в БД
  *
  * @param id ид пользователя
  * @param login логин пользователя
@@ -15,7 +13,7 @@ import kotlinx.serialization.Serializable
  * @author Anton Omelyuk
  */
 @Serializable
-data class UserResponse(
+data class UserStore(
     @SerialName("id")
     val id: Int,
     @SerialName("login")

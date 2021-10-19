@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.backgroundwork.R
+import com.example.backgroundwork.data.api.UsersApi
 import com.example.backgroundwork.databinding.UserItemBinding
 import com.example.backgroundwork.models.presentation.UserModel
 import com.example.backgroundwork.view.users.fragment.UsersAdapter.UserModelViewHolder
 
-class UsersAdapter : RecyclerView.Adapter<UserModelViewHolder>() {
+class UsersAdapter() : RecyclerView.Adapter<UserModelViewHolder>() {
 
     private var users: List<UserModel> = emptyList()
 
